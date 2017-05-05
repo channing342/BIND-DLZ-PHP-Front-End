@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     $type = mysqli_real_escape_string($con, $_POST['type']);
     $data = mysqli_real_escape_string($con, $_POST['data']);
     $ttl  = mysqli_real_escape_string($con, $_POST['ttl']);
+    $id  = mysqli_real_escape_string($con, $_POST['id']);
 
     if(mysqli_query($con, "UPDATE dns_records SET zone='$zone', host='$host', type='$type', data='$data', ttl='$ttl' WHERE ser_no=" .  $id)) {
         $success = "Record updated successfully!";
@@ -47,7 +48,7 @@ if (isset($_POST['submit'])) {
             <div class="panel-body">
                 <form name="insertform" method="post" action="update_language.php">
                     <div class="form-group">
-                        <input type="hidden" name="lid" value="<?php if(isset($row['id'])) { echo $row['id']; } ?>" />
+                        <input type="hidden" name="id" value="<?php if(isset($row['ser_no'])) { echo $row['ser_no']; } ?>" />
                         <input type="text" name="zone" placeholder="Enter ZONE" value="<?php if(isset($row['zone'])) { echo $row['zone']; } ?>" required class="form-control" />
                     </div>
                     <div class="form-group">
